@@ -28,8 +28,12 @@ jobs:
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  # Invoke jobs via workflows
+  # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  deploy:
+    executor: docker/docker
+    steps:
+      - run: "./deploy.sh"
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
@@ -48,3 +52,6 @@ workflows:
             branches:
               only:
                 - master
+      - deploy:
+          requires:
+            - build-and-push
