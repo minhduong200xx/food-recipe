@@ -36,7 +36,12 @@ jobs:
       docker_tag: latest
     executor: docker/docker
     steps:
-      - run: bash ./deploy.sh
+      - run:
+          command: docker-compose stop
+            docker-compose rm -f
+            docker-compose pull
+            docker-compose up -d
+
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
