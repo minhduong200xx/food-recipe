@@ -39,11 +39,11 @@ jobs:
       - run:
           name: stop latest version
           command: |
-            docker compose stop
+            docker stop myreact
       - run:
           name: remove latest version
           command: |
-            docker compose -f
+            docker rm -f my react
       - run:
           name: pull latest version
           command: |
