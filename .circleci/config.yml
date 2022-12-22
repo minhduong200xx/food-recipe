@@ -36,22 +36,11 @@ jobs:
       docker_tag: latest
     executor: docker/docker
     steps:
+      - docker/install-docker-compose:
+          install-dir: /usr/bin/env
       - run:
-          name: stop latest version
           command: |
-            docker stop myreact
-      - run:
-          name: remove latest version
-          command: |
-            docker rm -f my react
-      - run:
-          name: pull latest version
-          command: |
-            docker compose pull
-      - run:
-          name: up latest version
-          command: |
-            docker compose up -d
+            docker-compose stop
 
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
