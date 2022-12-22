@@ -37,7 +37,8 @@ jobs:
     executor: docker/docker
     steps:
       - run:
-          command: docker-compose stop
+          command: |
+            docker-compose stop
             docker-compose rm -f
             docker-compose pull
             docker-compose up -d
