@@ -6,7 +6,6 @@ version: 2.1
 orbs:
   node: circleci/node@4.7
   docker: circleci/docker@2.2.0
-  vercel: i-am-jeetu/vercel-orb@1.0.0
 jobs:
   build-and-push:
     environment:
