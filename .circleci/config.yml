@@ -37,7 +37,7 @@ jobs:
     executor: docker/docker
     steps:
       - docker/install-docker-compose:
-          install-dir: /usr/bin/env
+          install-dir: /usr/local/bin
       - run:
           command: |
             docker-compose stop
