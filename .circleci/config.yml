@@ -36,7 +36,7 @@ jobs:
       docker_tag: latest
     executor: docker/docker
     steps:
-      - run: sh ./deploy.sh
+      - run: bash ./deploy.sh
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
