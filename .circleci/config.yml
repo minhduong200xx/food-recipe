@@ -36,21 +36,7 @@ jobs:
       docker_tag: latest
     executor: docker/docker
     steps:
-      - setup_remote_docker
-      - checkout
-      - docker/check:
-          docker-username: docker_username
-          docker-password: docker_password
-      - docker/build:
-          image: $docker_image
-          tag: $docker_tag
-      - docker/push:
-          digest-path: /tmp/digest.txt
-          image: $docker_image
-          tag: $docker_tag
-      - run:
-          command: |
-            ./deploy.sh
+      - run: sh ./deploy.sh
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
