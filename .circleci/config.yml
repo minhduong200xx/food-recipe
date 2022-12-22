@@ -39,19 +39,19 @@ jobs:
       - run:
           name: stop latest version
           command: |
-            docker-compose stop
+            docker compose stop
       - run:
           name: remove latest version
           command: |
-            docker-compose rm -f
+            docker compose -f
       - run:
           name: pull latest version
           command: |
-            docker-compose pull
+            docker compose pull
       - run:
           name: up latest version
           command: |
-            docker-compose up -d
+            docker compose up -d
 
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
