@@ -6,6 +6,7 @@ version: 2.1
 orbs:
   node: circleci/node@4.7
   docker: circleci/docker@2.2.0
+  vercel: i-am-jeetu/vercel-orb@1.0.0
 jobs:
   build-and-push:
     environment:
@@ -31,9 +32,26 @@ jobs:
   # Invoke jobs via workflows
   # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
   deploy:
+    environment:
+      docker_image: mizun200x/food-recipe
+      docker_tag: latest
     executor: docker/docker
     steps:
-      - run: circleci@localhost  ./deploy.sh
+      - setup_remote_docker
+      - checkout
+      - docker/check:
+          docker-username: docker_username
+          docker-password: docker_password
+      - docker/build:
+          image: $docker_image
+          tag: $docker_tag
+      - docker/push:
+          digest-path: /tmp/digest.txt
+          image: $docker_image
+          tag: $docker_tag
+      - run:
+          command: |
+            ./deploy.sh
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
