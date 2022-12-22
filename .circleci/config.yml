@@ -37,10 +37,20 @@ jobs:
     executor: docker/docker
     steps:
       - run:
+          name: stop latest version
           command: |
-            docker-compose stop 
+            docker-compose stop
+      - run:
+          name: remove latest version
+          command: |
             docker-compose rm -f
-            docker-compose pull 
+      - run:
+          name: pull latest version
+          command: |
+            docker-compose pull
+      - run:
+          name: up latest version
+          command: |
             docker-compose up -d
 
 workflows:
