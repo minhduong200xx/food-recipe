@@ -44,12 +44,13 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
   deploy:
     executor: docker/docker
+    working_directory: ~/repo
     steps:
       - setup_remote_docker
       - run:
           name: up
           command: |
-            ./deploy.sh
+            docker run --name
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
