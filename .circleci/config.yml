@@ -51,6 +51,7 @@ jobs:
           name: up
           command: |
             docker run --name food-recipe -d -p 8080:80 mizun200x/food-recipe:latest
+            docker pull mizun200x/food-recipe:latest
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
