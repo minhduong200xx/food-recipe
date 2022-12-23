@@ -28,20 +28,30 @@ jobs:
       - run:
           command: |
             echo "Digest is: $(</tmp/digest.txt)"
-  # Invoke jobs via workflows
-  # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
-  deploy:
+  install-docker-compose:
     environment:
       docker_image: mizun200x/food-recipe
       docker_tag: latest
     executor: docker/docker
     steps:
-      - docker/install-docker-compose:
-          install-dir: /usr/local/bin
       - run:
+          name: Install Docker Compose
+          environment:
+            COMPOSE_VERSION: "1.29.2"
           command: |
-            docker pull mizun200x/food-recipe:latest
-
+            curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+  deploy:
+    executor: docker/docker
+    steps:
+      - setup_remote_docker
+      - run:
+          name: stop latest version
+          command: docker-compose stop
+            docker-compose rm -f
+            docker-compose pull
+            docker-compose up -d
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
@@ -60,6 +70,9 @@ workflows:
             branches:
               only:
                 - master
-      - deploy:
+      - install-docker-compose:
           requires:
             - build-and-push
+      - deploy:
+          requires:
+            - install-docker-compose
