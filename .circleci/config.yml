@@ -34,7 +34,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "b3:c5:22:1a:dc:b6:d5:86:c1:c6:75:41:6a:f8:d3:1a"
-      - run: ssh -oStrictHostKeyChecking=no root@159.223.55.57 './deploy.sh'
+      - run: ssh -oStrictHostKeyChecking=no circleci@159.223.55.57 './deploy.sh'
 workflows:
   build-and-deploy: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
