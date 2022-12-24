@@ -17,7 +17,7 @@ function App() {
         >
           Learn React
         </a>
-        <h1>This is first test</h1>
+        <h1>Test full web docker</h1>
       </header>
     </div>
   );
