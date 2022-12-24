@@ -3,4 +3,4 @@ services:
   food-recipe:
     image: mizun200x/food-recipe:latest
     ports:
-      - "8080:80"
+      - "8000:80"
