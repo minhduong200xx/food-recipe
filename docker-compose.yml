@@ -1,6 +1,6 @@
 version: "3.5"
 services:
-  web:
+  food-recipe:
     image: mizun200x/food-recipe:latest
     ports:
       - "8080:80"
