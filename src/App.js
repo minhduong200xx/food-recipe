@@ -17,7 +17,7 @@ function App() {
         >
           Learn React
         </a>
-        <h1>Test full web docker</h1>
+        <h1>All process of CI/CD are set</h1>
       </header>
     </div>
   );
