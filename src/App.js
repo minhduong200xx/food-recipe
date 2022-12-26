@@ -13,22 +13,20 @@ import { useState } from "react";
 const App = () => {
   return (
     <AnimatePresence>
-      {isVisible && (
-        <div className="w-screen h-auto flex flex-col bg-primary">
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/congthuc" element={<Recipes />}></Route>
-            <Route path="/congthuc/:id" element={<Recipe />}></Route>
-            <Route path="/thongtin" element={<About />}></Route>
-            <Route path="/tao" element={<CreateRecipes />}></Route>
-            <Route path="/sua/:id" element={<CreateRecipes />}></Route>
-            <Route path="/dangnhap" element={<Auth />}></Route>
-            <Route path="*" element={<Error />}></Route>
-          </Routes>
-          <Footer />
-        </div>
-      )}
+      <div className="w-screen h-auto flex flex-col bg-primary">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/congthuc" element={<Recipes />}></Route>
+          <Route path="/congthuc/:id" element={<Recipe />}></Route>
+          <Route path="/thongtin" element={<About />}></Route>
+          <Route path="/tao" element={<CreateRecipes />}></Route>
+          <Route path="/sua/:id" element={<CreateRecipes />}></Route>
+          <Route path="/dangnhap" element={<Auth />}></Route>
+          <Route path="*" element={<Error />}></Route>
+        </Routes>
+        <Footer />
+      </div>
     </AnimatePresence>
   );
 };

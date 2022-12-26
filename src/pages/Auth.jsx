@@ -1,11 +1,10 @@
-import { transformFromAst } from "@babel/core";
-import { toStatement } from "@babel/types";
 import { createUserWithEmailAndPassword, updateProfile } from "@firebase/auth";
 import { async } from "q";
 import React from "react";
 import { useState } from "react";
 import { auth } from "../firebase.config";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 const initialState = {
   firstName: "",
   lastName: "",
