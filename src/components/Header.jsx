@@ -12,11 +12,10 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 const Header = () => {
   return (
-    <header className="fixed z-50 w-screen p-3 px-4 md:p-6 md:px-16 bg-primary">
+    <header className="fixed z-50 w-screen p-2 md:p-2 md:px-16 bg-[#ff914d]">
       <div className="hidden md:flex w-full h-full items-center justify-between">
         <Link to={"/"} className="flex items-center gap-2">
-          <img src={Logo} className="w-14  object-cover" alt="logo" />
-          <p className="text-orange-600 text-xl font-bold italic "> PRONNTO</p>
+          <img src={Logo} className="h-16  object-cover" alt="logo" />
         </Link>
 
         <div className="flex items-center gap-8">
@@ -26,16 +25,16 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-24 "
           >
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            <li className="text-lg text-white hover:text-black duration-100 transition-all ease-in-out cursor-pointer">
               Trang Chủ
             </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            <li className="text-lg text-white hover:text-black duration-100 transition-all ease-in-out cursor-pointer">
               Công thức
             </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            <li className="text-lg text-white hover:text-black duration-100 transition-all ease-in-out cursor-pointer">
               Thông tin
             </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            <li className="text-lg text-white hover:text-black duration-100 transition-all ease-in-out cursor-pointer">
               Liên hệ
             </li>
           </motion.ul>
