@@ -1,10 +1,15 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import "./index.css";
-import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
-createRoot(document.getElementById("root")).render(
-  <Router>
-    <App />
-  </Router>
+import { BrowserRouter } from "react-router-dom";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
 );

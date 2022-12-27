@@ -1,5 +1,5 @@
 import { getAuth } from "@firebase/auth";
-import { getApp, getApps, initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
@@ -13,9 +13,9 @@ const firebaseConfig = {
   appId: "1:387247167823:web:66cdaa99169c8ff0fecd3a",
 };
 
-const app = getApps.Length > 0 ? getApp() : initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const firestore = getFirestore(app);
+const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { app, auth, firestore, storage };
+export { app, auth, db, storage };

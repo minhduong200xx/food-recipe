@@ -1,59 +1,125 @@
-import React, { useState } from "react";
-import { MdShoppingBasket, MdAdd, MdLogout } from "react-icons/md";
-import { motion } from "framer-motion";
-
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { app } from "../firebase.config";
-
-import Logo from "../img/logo.png";
-import Avatar from "../img/avatar.png";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useStateValue } from "../context/StateProvider";
-import { actionType } from "../context/reducer";
-const Header = ({ active, setActive }) => {
+import transitions from "bootstrap";
+import Logo from "../img/frlogo.svg";
+import { RxAvatar } from "react-icons/rx";
+import { motion } from "framer-motion";
+const Header = ({ active, setActive, user, handleLogout }) => {
+  const userId = user?.uid;
   return (
-    <header className="fixed z-50 w-screen p-2 md:p-2 md:px-16 bg-[#ff914d]">
-      <div className="hidden md:flex w-full h-full items-center justify-between">
-        <Link to={"/"} className="flex items-center gap-2">
-          <img src={Logo} className="h-16  object-cover" alt="logo" />
-        </Link>
+    <div>
+      <header className="fixed z-50 w-screen ">
+        <nav className="flex navbar navbar-expand-lg navbar-light bg-orange-400 ">
+          <div className="container-fluid padding-media">
+            <div className="container padding-media">
+              <nav className="navbar navbar-toggleable-md navbar-light">
+                <button
+                  className="navbar-toggler mt-3"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#navbarSupportedContent"
+                  data-bs-parent="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent"
+                  aria-expanded="true"
+                  aria-label="Toggle Navigation"
+                >
+                  <span className="fa fa-bars"></span>
+                </button>
+                <div
+                  className="flex justify-center navbar-collapse"
+                  id="navbarSupportedContent"
+                >
+                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    <Link to={"/"} className="flex items-center px-8">
+                      <img
+                        src={Logo}
+                        className="h-14 w-24  object-cover"
+                        alt="logo"
+                      />
+                    </Link>
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                      <li
+                        className={`nav-item nav-link ${
+                          active === "home" ? "active" : ""
+                        }`}
+                        onClick={() => setActive("home")}
+                      >
+                        Trang chủ
+                      </li>
+                    </Link>
+                    <Link to="/blogs" style={{ textDecoration: "none" }}>
+                      <li
+                        className={`nav-item nav-link ${
+                          active === "blogs" ? "active" : ""
+                        }`}
+                        onClick={() => setActive("blogs")}
+                      >
+                        Công Thức
+                      </li>
+                    </Link>
 
-        <div className="flex items-center gap-8">
-          <motion.ul
-            initial={{ opacity: 0, x: 200 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 200 }}
-            className="flex items-center gap-24 "
-          >
-            <Link to="/">
-              <li className="text-lg text-white active:text-black duration-100 transition-all ease-in-out cursor-pointer">
-                Trang Chủ
-              </li>
-            </Link>
-            <Link to="/congthuc">
-              <li className="text-lg text-white hover:text-black duration-100 transition-all ease-in-out cursor-pointer">
-                Công thức
-              </li>
-            </Link>
-            <Link to="/thongtin">
-              <li className="text-lg text-white hover:text-black duration-100 transition-all ease-in-out cursor-pointer">
-                Thông tin
-              </li>
-            </Link>
-            <Link to="/dangnhap">
-              <li className="text-lg text-white hover:text-black duration-100 transition-all ease-in-out cursor-pointer">
-                Đăng nhập
-              </li>
-            </Link>
-            <Link to="/congthuc">
-              <li className="text-lg text-white hover:text-black duration-100 transition-all ease-in-out cursor-pointer">
-                Công thức
-              </li>
-            </Link>
-          </motion.ul>
-        </div>
-      </div>
-    </header>
+                    <Link to="/create" style={{ textDecoration: "none" }}>
+                      <li
+                        className={`nav-item nav-link ${
+                          active === "create" ? "active" : ""
+                        }`}
+                        onClick={() => setActive("create")}
+                      >
+                        Thêm
+                      </li>
+                    </Link>
+
+                    <Link to="/about" style={{ textDecoration: "none" }}>
+                      <li
+                        className={`nav-item nav-link ${
+                          active === "about" ? "active" : ""
+                        }`}
+                        onClick={() => setActive("about")}
+                      >
+                        Thông tin
+                      </li>
+                    </Link>
+                  </ul>
+                  <div className="row g-3">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                      {userId ? (
+                        <>
+                          <div className="flex flex-row rounded-3xl bg-slate-200 px-3 justify-center items-center">
+                            <div className="profile-logo">
+                              <RxAvatar className="text-slate-500 h-10 w-10"></RxAvatar>
+                            </div>
+                            <p className="pl-4 font-semibold">
+                              {user?.displayName}
+                            </p>
+                          </div>
+                          <li
+                            className="nav-item nav-link"
+                            onClick={handleLogout}
+                          >
+                            Đăng Xuất
+                          </li>
+                        </>
+                      ) : (
+                        <Link to="/auth" style={{ textDecoration: "none" }}>
+                          <li
+                            className={`nav-item nav-link ${
+                              active === "login" ? "active" : ""
+                            }`}
+                            onClick={() => setActive("login")}
+                          >
+                            Đăng Nhập
+                          </li>
+                        </Link>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
   );
 };
 
