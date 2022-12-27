@@ -29,7 +29,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                   className="flex justify-center navbar-collapse"
                   id="navbarSupportedContent"
                 >
-                  <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                  <motion.ul className="navbar-nav me-auto mb-2 mb-lg-0">
                     <Link to={"/"} className="flex items-center px-8">
                       <img
                         src={Logo}
@@ -79,7 +79,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                         Thông tin
                       </li>
                     </Link>
-                  </ul>
+                  </motion.ul>
                   <div className="row g-3">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                       {userId ? (
