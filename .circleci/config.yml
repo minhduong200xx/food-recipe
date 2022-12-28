@@ -46,16 +46,7 @@ workflows:
       #     version: "16.10"
       #     # If you are using yarn, change the line below from "npm" to "yarn"
       #     pkg-manager: npm
-      - build-and-push:
-<<<<<<< HEAD
-          # requires:
-          #   - node/test
-=======
->>>>>>> a92682f6eacee1d7ce3033672a8dbb2dba0ef13b
-          filters:
-            branches:
-              only:
-                - circleci-project-setup
+      - build-and-push
       - deploy:
           filters:
             branches:
