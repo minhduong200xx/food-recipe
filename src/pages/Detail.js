@@ -53,7 +53,13 @@ const Detail = ({ setActive, user }) => {
 
   useEffect(() => {
     id && getBlogDetail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   const getBlogDetail = async () => {
     setLoading(true);
     const blogRef = collection(db, "blogs");
@@ -124,7 +130,7 @@ const Detail = ({ setActive, user }) => {
     <div className="single">
       <div
         className="blog-title-box"
-        style={{ backgroundImage: `url('${blog?.imgUrl}')` }}
+        style={" backgroundImage: `url('${blog?.imgUrl}')` "}
       >
         <div className="overlay"></div>
         <div className="blog-title">
@@ -137,7 +143,7 @@ const Detail = ({ setActive, user }) => {
           <div className="row mx-0">
             <div className="col-md-8">
               <span className="meta-info text-start">
-                <p className="author">Đăng bởi: {blog?.author}</p> -&nbsp;
+                Đăng bởi <p className="author">{blog?.author}</p> -&nbsp;
                 {blog?.timestamp.toDate().toDateString()}
                 <Like handleLike={handleLike} likes={likes} userId={userId} />
               </span>
@@ -152,7 +158,7 @@ const Detail = ({ setActive, user }) => {
                   {isEmpty(comments) ? (
                     <UserComments
                       msg={
-                        "Chưa có bình luận.  Hãy trở thành người bình luận đầu tiên!"
+                        "Chưa có bình luận nào cho bài viết này. Trở thành người bình luận đầu tiên."
                       }
                     />
                   ) : (
@@ -174,7 +180,7 @@ const Detail = ({ setActive, user }) => {
             <div className="col-md-3">
               <div className="blog-heading text-start py-2 mb-4">Tags</div>
               <Tags tags={tags} />
-              <FeatureBlogs title={"Recent Blogs"} blogs={blogs} />
+              <FeatureBlogs title={"Bài Viết Gần Đây"} blogs={blogs} />
             </div>
           </div>
           <RelatedBlog id={id} blogs={relatedBlogs} />
