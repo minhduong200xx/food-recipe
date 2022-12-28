@@ -31,6 +31,8 @@ const categoryOption = [
   "Ăn Chay",
   "Cho Bé",
   "Cuối Tuần",
+  "Đồ Uống",
+  "Chè",
 ];
 
 const AddEditBlog = ({ user, setActive }) => {
@@ -53,14 +55,14 @@ const AddEditBlog = ({ user, setActive }) => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+          console.log("Tải lên " + progress + "% xong");
           setProgress(progress);
           switch (snapshot.state) {
             case "paused":
-              console.log("Upload is paused");
+              console.log("Đã dừng tải lên!");
               break;
             case "running":
-              console.log("Upload is running");
+              console.log("Đang tải lên...");
               break;
             default:
               break;
@@ -71,7 +73,7 @@ const AddEditBlog = ({ user, setActive }) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            toast.info("Image upload to firebase successfully");
+            toast.info("Tải lên ảnh thành công!");
             setForm((prev) => ({ ...prev, imgUrl: downloadUrl }));
           });
         }
@@ -122,7 +124,7 @@ const AddEditBlog = ({ user, setActive }) => {
             author: user.displayName,
             userId: user.uid,
           });
-          toast.success("Blog created successfully");
+          toast.success("Thêm công thức thành công!");
         } catch (err) {
           console.log(err);
         }
@@ -134,13 +136,13 @@ const AddEditBlog = ({ user, setActive }) => {
             author: user.displayName,
             userId: user.uid,
           });
-          toast.success("Blog updated successfully");
+          toast.success("Cập nhật công thức thành công");
         } catch (err) {
           console.log(err);
         }
       }
     } else {
-      return toast.error("All fields are mandatory to fill");
+      return toast.error("Hãy điền vào tất cả các trường!");
     }
 
     navigate("/");

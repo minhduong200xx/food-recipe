@@ -148,7 +148,7 @@ const Detail = ({ setActive, user }) => {
               <br />
               <div className="custombox">
                 <div className="scroll">
-                  <h4 className="small-title">{comments?.length} Comment</h4>
+                  <h4 className="small-title">{comments?.length} Bình luận</h4>
                   {isEmpty(comments) ? (
                     <UserComments
                       msg={
