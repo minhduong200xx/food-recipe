@@ -59,8 +59,5 @@ module.exports = {
       },
     },
   },
-  fontFamily: {
-    body: ['"Open Sans"'],
-  },
   plugins: [require("tailwind-scrollbar")],
 };

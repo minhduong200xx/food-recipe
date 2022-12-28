@@ -31,8 +31,6 @@ const categoryOption = [
   "Ăn Chay",
   "Cho Bé",
   "Cuối Tuần",
-  "Đồ Uống",
-  "Chè",
 ];
 
 const AddEditBlog = ({ user, setActive }) => {
@@ -55,14 +53,14 @@ const AddEditBlog = ({ user, setActive }) => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Tải lên " + progress + "% xong");
+          console.log("Upload is " + progress + "% done");
           setProgress(progress);
           switch (snapshot.state) {
             case "paused":
-              console.log("Đã dừng tải lên!");
+              console.log("Upload is paused");
               break;
             case "running":
-              console.log("Đang tải lên...");
+              console.log("Upload is running");
               break;
             default:
               break;
@@ -73,7 +71,7 @@ const AddEditBlog = ({ user, setActive }) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            toast.info("Tải lên ảnh thành công!");
+            toast.info("Image upload to firebase successfully");
             setForm((prev) => ({ ...prev, imgUrl: downloadUrl }));
           });
         }
@@ -124,7 +122,7 @@ const AddEditBlog = ({ user, setActive }) => {
             author: user.displayName,
             userId: user.uid,
           });
-          toast.success("Thêm công thức thành công!");
+          toast.success("Blog created successfully");
         } catch (err) {
           console.log(err);
         }
@@ -136,13 +134,13 @@ const AddEditBlog = ({ user, setActive }) => {
             author: user.displayName,
             userId: user.uid,
           });
-          toast.success("Cập nhật công thức thành công");
+          toast.success("Blog updated successfully");
         } catch (err) {
           console.log(err);
         }
       }
     } else {
-      return toast.error("Hãy điền vào tất cả các trường!");
+      return toast.error("All fields are mandatory to fill");
     }
 
     navigate("/");

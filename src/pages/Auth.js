@@ -63,7 +63,7 @@ const Auth = ({ setActive, setUser }) => {
 
   return (
     <div className="container-fluid py-4 bg-gray-100">
-      <div className="container w-2/3 bg-orange-200 rounded-2xl px-2">
+      <div className="container w-2/3 bg-orange-300 rounded-2xl px-2">
         <div className="col-12 text-center">
           <div className="text-center text-black font-bold text-2xl pt-4 uppercase">
             {!signUp ? "Đăng Nhập" : "Đăng Ký"}
@@ -129,12 +129,12 @@ const Auth = ({ setActive, setUser }) => {
                 </div>
               )}
 
-              <div className="col-12 pb-4 text-center">
+              <div className="col-12 py-3 text-center">
                 <div>
                   {!signUp ? (
                     <>
-                      <div className="text-center justify-content-center">
-                        <p className="small fw-bold py-4">
+                      <div className="text-center justify-content-center p-2">
+                        <p className="small fw-bold mt-2 pt-1 mb-0">
                           Chưa có tài khoản?
                           <span
                             className="text-orange-500"
@@ -153,9 +153,13 @@ const Auth = ({ setActive, setUser }) => {
                     <>
                       <div className="text-center justify-content-center mt-2 pt-2">
                         <p className="small fw-bold mt-2 pt-1 mb-0">
-                          Đã có tài khoản ?&nbsp;
+                          Already have an account ?&nbsp;
                           <span
-                            className="text-orange-600 "
+                            style={{
+                              textDecoration: "none",
+                              cursor: "pointer",
+                              color: "#298af2",
+                            }}
                             onClick={() => setSignUp(false)}
                           >
                             Đăng Nhập
