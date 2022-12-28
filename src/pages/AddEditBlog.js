@@ -176,7 +176,7 @@ const AddEditBlog = ({ user, setActive }) => {
                 />
               </div>
               <div className="col-12 py-3 px-4">
-                <p className="trending px-2 uppercase">Thêm vào Đề Xuất ?</p>
+                <p className="trending px-2 uppercase">Thêm vào Đề Xuất Không</p>
                 <div className="form-check-inline mx-4 px-4 flex flex-row gap-2">
                   <input
                     type="radio"
