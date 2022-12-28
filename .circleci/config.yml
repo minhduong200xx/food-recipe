@@ -48,6 +48,8 @@ workflows:
       #     pkg-manager: npm
       - build-and-push
       - deploy:
+          requires:
+            - build-and-push
           filters:
             branches:
               only:
