@@ -44,12 +44,12 @@ const Like = ({ handleLike, likes, userId }) => {
             className="btn btn-primary"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title="Đăng nhập để thích"
+            title="Please Đăng nhập to like post"
           >
             <LikeStatus />
           </button>
         ) : (
-          <button type="button" className="btn btn-primary text-black">
+          <button type="button" className="btn btn-primary">
             <LikeStatus />
           </button>
         )}
