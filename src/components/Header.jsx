@@ -4,6 +4,7 @@ import transitions from "bootstrap";
 import Logo from "../img/frlogo.svg";
 import { RxAvatar } from "react-icons/rx";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 const Header = ({ active, setActive, user, handleLogout }) => {
   const userId = user?.uid;
   return (
@@ -39,7 +40,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                     </Link>
                     <Link to="/" style={{ textDecoration: "none" }}>
                       <li
-                        className={`nav-item nav-link ${
+                        className={`nav-item nav-link text- ${
                           active === "home" ? "active" : ""
                         }`}
                         onClick={() => setActive("home")}
@@ -49,7 +50,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                     </Link>
                     <Link to="/blogs" style={{ textDecoration: "none" }}>
                       <li
-                        className={`nav-item nav-link ${
+                        className={`nav-item nav-link text- ${
                           active === "blogs" ? "active" : ""
                         }`}
                         onClick={() => setActive("blogs")}
@@ -58,25 +59,41 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                       </li>
                     </Link>
 
-                    <Link to="/create" style={{ textDecoration: "none" }}>
-                      <li
-                        className={`nav-item nav-link ${
-                          active === "create" ? "active" : ""
-                        }`}
-                        onClick={() => setActive("create")}
-                      >
-                        Thêm
-                      </li>
-                    </Link>
+                    {userId ? (
+                      <Link to="/create" style={{ textDecoration: "none" }}>
+                        <li
+                          className={`nav-item nav-link text- ${
+                            active === "create" ? "active" : ""
+                          }`}
+                          onClick={() => setActive("create")}
+                        >
+                          Thêm
+                        </li>
+                      </Link>
+                    ) : (
+                      <Link to="/auth" style={{ textDecoration: "none" }}>
+                        <li
+                          className={`nav-item nav-link text- ${
+                            active === "create" ? "active" : ""
+                          }`}
+                          onClick={() => {
+                            toast.warn("Vui lòng đăng nhập để thêm công thức!");
+                            setActive("login");
+                          }}
+                        >
+                          Thêm
+                        </li>
+                      </Link>
+                    )}
 
                     <Link to="/about" style={{ textDecoration: "none" }}>
                       <li
-                        className={`nav-item nav-link ${
+                        className={`nav-item nav-link text- ${
                           active === "about" ? "active" : ""
                         }`}
                         onClick={() => setActive("about")}
                       >
-                        Thông tin
+                        Giới thiệu
                       </li>
                     </Link>
                   </motion.ul>
@@ -93,7 +110,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                             </p>
                           </div>
                           <li
-                            className="nav-item nav-link"
+                            className="nav-item nav-link text-"
                             onClick={handleLogout}
                           >
                             Đăng Xuất
@@ -102,7 +119,7 @@ const Header = ({ active, setActive, user, handleLogout }) => {
                       ) : (
                         <Link to="/auth" style={{ textDecoration: "none" }}>
                           <li
-                            className={`nav-item nav-link ${
+                            className={`nav-item nav-link text- ${
                               active === "login" ? "active" : ""
                             }`}
                             onClick={() => setActive("login")}

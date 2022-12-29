@@ -105,7 +105,9 @@ const Blogs = ({ setActive }) => {
     <div>
       <div className="container">
         <div className="row">
-          <div className="blog-heading text-center py-2 mb-4">Công Thức</div>
+          <div className=" text-center py-4 text-2xl uppercase font-bold mb-4 border-b-2 border-b-gray-200">
+            Công Thức
+          </div>
           {blogs?.map((blog) => (
             <div className="col-md-6" key={blog.id}>
               <BlogSection {...blog} />

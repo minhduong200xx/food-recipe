@@ -25,9 +25,11 @@ const Trending = ({ blogs }) => {
     },
   };
   return (
-    <>
-      <div>
-        <div className="blog-heading text-start py-2 mb-4">Đề Xuất</div>
+    <div className="w-sceen">
+      <div className="w-full ml-2 pb-2 mb-2  border-b-2 border-b-gray-300">
+        <div className="w-fit bg-red-500 px-3  py-1 text-gray-100 rounded-xl mb-2 ">
+          Đề Xuất
+        </div>
       </div>
       <OwlCarousel className="owl-theme" {...options}>
         {blogs?.map((item) => (
@@ -53,7 +55,7 @@ const Trending = ({ blogs }) => {
           </div>
         ))}
       </OwlCarousel>
-    </>
+    </div>
   );
 };
 

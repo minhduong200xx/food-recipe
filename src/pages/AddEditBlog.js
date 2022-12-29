@@ -26,11 +26,14 @@ const initialState = {
 
 const categoryOption = [
   "Bánh Ngọt",
-  "Món Ăn Thường Ngày ",
-  "Ăn Kiêng",
-  "Ăn Chay",
-  "Cho Bé",
-  "Cuối Tuần",
+  "Thịt bò",
+  "Thịt gia cầm",
+  "Thịt lợn - Sườn",
+  "Thuỷ hải sản",
+  "Rau - Đậu phụ",
+  "Cơm - Xôi - Cháo",
+  "Bún - Mỳ - Miến - Phở",
+  "Trứng",
   "Đồ Uống",
 ];
 
@@ -54,14 +57,14 @@ const AddEditBlog = ({ user, setActive }) => {
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+          console.log("Đăng tải " + progress + "% thành công!");
           setProgress(progress);
           switch (snapshot.state) {
             case "paused":
-              console.log("Upload is paused");
+              console.log("Đã dừng tải lên!");
               break;
             case "running":
-              console.log("Upload is running");
+              console.log("Đang tải lên...");
               break;
             default:
               break;
@@ -72,7 +75,7 @@ const AddEditBlog = ({ user, setActive }) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadUrl) => {
-            toast.info("Image upload to firebase successfully");
+            toast.info("Thêm ảnh thành công!");
             setForm((prev) => ({ ...prev, imgUrl: downloadUrl }));
           });
         }
@@ -151,7 +154,7 @@ const AddEditBlog = ({ user, setActive }) => {
     <div className="container-fluid mb-4">
       <div className="container">
         <div className="col-12">
-          <div className="text-center heading py-2">
+          <div className="text-center heading uppercase py-4 font-extrabold font-2xl">
             {id ? "Cập Nhật Công Thức" : "Đăng Công Thức"}
           </div>
         </div>
@@ -164,7 +167,7 @@ const AddEditBlog = ({ user, setActive }) => {
                   className="form-control input-text-box pl-4"
                   placeholder="Tiêu Đề"
                   name="title"
-                  value={title}
+                  value={title.toLowerCase()}
                   onChange={handleChange}
                 />
               </div>
@@ -235,7 +238,7 @@ const AddEditBlog = ({ user, setActive }) => {
               </div>
               <div className="col-12 py-3 px-4 text-center">
                 <button
-                  className="btn btn-add"
+                  className="btn rounded-xl bg-green-600 px-4 text-white font-semibold"
                   type="submit"
                   disabled={progress !== null && progress < 100}
                 >

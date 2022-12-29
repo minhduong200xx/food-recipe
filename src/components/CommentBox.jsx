@@ -17,15 +17,18 @@ const CommentBox = ({ userId, userComment, setUserComment, handleComment }) => {
       </form>
       {!userId ? (
         <>
-          <h5>Vui lòng đăng nhập hoặc đăng ký để bình luận</h5>
-          <button className="btn btn-success" onClick={() => navigate("/auth")}>
+          <h5 className="my-2">Vui lòng đăng nhập hoặc đăng ký để bình luận</h5>
+          <button
+            className="bg-green-600 px-2 py-1 rounded-2xl text-gray-100 hover:bg-red-600"
+            onClick={() => navigate("/auth")}
+          >
             Đăng nhập
           </button>
         </>
       ) : (
         <>
           <button
-            className="btn btn-primary bg-blue-600"
+            className="bg-green-600 px-2 py-1 rounded-2xl text-gray-100 hover:bg-blue-600"
             type="submit"
             onClick={handleComment}
           >

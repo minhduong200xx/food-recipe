@@ -22,7 +22,7 @@ import Search from "../components/Search";
 import { isEmpty, isNull } from "lodash";
 import { useLocation } from "react-router-dom";
 import Category from "../components/Category";
-
+import { Link } from "react-router-dom";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -107,7 +107,7 @@ const Home = ({ setActive, user, active }) => {
       setBlogs((blogs) => [...blogs, ...blogsData]);
       setLastVisible(docSnapshot.docs[docSnapshot.docs.length - 1]);
     } else {
-      toast.info("No more blog to display");
+      toast.info("Không còn bài viết để hiển thị");
       setHide(true);
     }
   };
@@ -129,22 +129,22 @@ const Home = ({ setActive, user, active }) => {
   const searchBlogs = async () => {
     const blogRef = collection(db, "blogs");
     const searchTitleQuery = query(blogRef, where("title", "==", searchQuery));
-    const searchTagQuery = query(
+    const searchdescQuery = query(
       blogRef,
-      where("tags", "array-contains", searchQuery)
+      where("description", "array-contains", searchQuery)
     );
     const titleSnapshot = await getDocs(searchTitleQuery);
-    const tagSnapshot = await getDocs(searchTagQuery);
+    const descSnapshot = await getDocs(searchdescQuery);
 
     let searchTitleBlogs = [];
-    let searchTagBlogs = [];
+    let searchdescBlogs = [];
     titleSnapshot.forEach((doc) => {
       searchTitleBlogs.push({ id: doc.id, ...doc.data() });
     });
-    tagSnapshot.forEach((doc) => {
-      searchTagBlogs.push({ id: doc.id, ...doc.data() });
+    descSnapshot.forEach((doc) => {
+      searchdescBlogs.push({ id: doc.id, ...doc.data() });
     });
-    const combinedSearchBlogs = searchTitleBlogs.concat(searchTagBlogs);
+    const combinedSearchBlogs = searchTitleBlogs.concat(searchdescBlogs);
     setBlogs(combinedSearchBlogs);
     setHide(true);
     setActive("");
@@ -161,11 +161,11 @@ const Home = ({ setActive, user, active }) => {
   }
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure wanted to delete that blog ?")) {
+    if (window.confirm("Bạn muốn xoá công thức này ?")) {
       try {
         setLoading(true);
         await deleteDoc(doc(db, "blogs", id));
-        toast.success("Blog deleted successfully");
+        toast.success("Xoá công thức thành công");
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -207,7 +207,13 @@ const Home = ({ setActive, user, active }) => {
         <div className="row mx-0">
           <Trending blogs={trendBlogs} />
           <div className="col-md-8">
-            <div className="blog-heading text-start py-2 mb-4">Công Thức</div>
+            <div className="border-b-2 border-b-gray-200 mb-2">
+              <Link to={"/blogs"}>
+                <div className="bg-orange-400 text-gray-100 w-fit px-2 py-1 rounded-xl my-2 ">
+                  Công Thức
+                </div>
+              </Link>
+            </div>
             {blogs.length === 0 && location.pathname !== "/" && (
               <>
                 <h4>
@@ -227,7 +233,7 @@ const Home = ({ setActive, user, active }) => {
 
             {!hide && (
               <button
-                className="btn btn-primary bg-orange-500 border-none hover:text-white hover:bg-slate-500"
+                className="cursor-pointer text-white px-3 py-2 rounded-xl bg-orange-500 border-none hover:text-white hover:bg-green-600"
                 onClick={fetchMore}
               >
                 Xem thêm
@@ -236,9 +242,15 @@ const Home = ({ setActive, user, active }) => {
           </div>
           <div className="col-md-3">
             <Search search={search} handleChange={handleChange} />
-            <div className="blog-heading text-start py-2 mb-4">Tags</div>
-            <Tags tags={tags} />
-            <FeatureBlogs title={"Phổ Biến"} blogs={blogs} />
+            <div className="bg-gray-300 text-xl w-full w-full rounded-xl my-2 ">
+              <div className="text-start ml-4 py-2 mb-4 text-black w-fit">
+                Tags
+              </div>
+              <Tags className="mt-2" title="Tags" tags={tags} />
+            </div>
+            <div className="bg-orange-300 w-full text-gray-100 px-2 py-1 rounded-xl my-2">
+              <FeatureBlogs title={"Phổ Biến"} blogs={blogs} />
+            </div>
             <Category catgBlogsCount={categoryCount} />
           </div>
         </div>

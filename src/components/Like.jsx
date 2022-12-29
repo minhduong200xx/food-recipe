@@ -42,7 +42,7 @@ const Like = ({ handleLike, likes, userId }) => {
         {!userId ? (
           <button
             type="button"
-            className="btn btn-primary bg-blue-600"
+            className="px-3 py-2 rounded-lg btn-primary text-sm bg-blue-600"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
             title="Đăng nhập để thích bài viết"
