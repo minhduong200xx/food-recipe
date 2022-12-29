@@ -8,7 +8,7 @@ const Card = ({ title, description, imgUrl, id, likes, comments }) => {
       <div className="related-content card text-decoration-none overflow-hidden h-100">
         <img className="related-img card-img-top" src={imgUrl} alt={title} />
         <div className="related-body card-body p-4">
-          <h5 className="title text-start py-2">{title}</h5>
+          <h5 className="title text-start py-2 capitalize">{title}</h5>
           <p className="short-description text-start">
             {excerpt(description, 25)}
           </p>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Category = ({ catgBlogsCount }) => {
   return (
     <div className="widget">
-      <div className="blog-heading text-start py-2 mb-4">Danh mục</div>
+      <div className="blog-heading text-start py-2 mb-4">Danh Mục</div>
       <div className="link-widget">
         <ul>
           {catgBlogsCount?.map((item, index) => (

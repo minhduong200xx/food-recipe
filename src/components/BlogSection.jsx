@@ -29,7 +29,7 @@ const BlogSection = ({
         <div className="col-md-7">
           <div className="text-start">
             <h6 className="category catg-color">{category}</h6>
-            <span className="title py-2">{title}</span>
+            <span className="title uppercase py-2">{title}</span>
             <span className="meta-info">
               <p className="author">{author}</p> -&nbsp;
               {timestamp.toDate().toDateString()}

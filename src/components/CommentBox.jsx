@@ -25,11 +25,11 @@ const CommentBox = ({ userId, userComment, setUserComment, handleComment }) => {
       ) : (
         <>
           <button
-            className="btn btn-primary"
+            className="btn btn-primary bg-blue-600"
             type="submit"
             onClick={handleComment}
           >
-            Post Comment
+            Bình luận
           </button>
         </>
       )}

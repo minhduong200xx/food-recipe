@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
+import { db } from "../firebase.js";
 const Search = ({ search, handleChange }) => {
   const navigate = useNavigate();
 

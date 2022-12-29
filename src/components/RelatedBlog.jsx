@@ -10,9 +10,7 @@ const RelatedBlog = ({ blogs, id }) => {
       <div className="col-md-12 text-left justify-content-center">
         <div className="row gx-5">
           {blogs.length === 1 && (
-            <h5 className="text-center">
-              Không có bài viết liên quan đến bài viết này
-            </h5>
+            <h5 className="text-center">Không có công thức liên quan</h5>
           )}
           {blogs
             ?.filter((blogs) => blogs.id !== id)

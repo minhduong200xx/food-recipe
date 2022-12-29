@@ -16,19 +16,20 @@ const Like = ({ handleLike, likes, userId }) => {
       return likes.find((id) => id === userId) ? (
         <>
           <i className="bi bi-hand-thumbs-up-fill" />
-          &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Likes"}
+          &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Thíchs"}
         </>
       ) : (
         <>
-          <i className="bi bi-hand-thumbs-up" />
-          &nbsp;{likes.length} {likes.length === 1 ? "Like" : "Likes"}
+          <i className="bi bi-hand-thumbs-up bg-blue-600" />
+          &nbsp;{likes.length}{" "}
+          {likes.length === 1 ? "lượt thích" : "lượt thích"}
         </>
       );
     }
     return (
       <>
-        <i className="bi bi-hand-thumbs-up" />
-        &nbsp;Thích
+        <i className="bi bi-hand-thumbs-up text-black" />
+        &nbsp;Like
       </>
     );
   };
@@ -41,15 +42,19 @@ const Like = ({ handleLike, likes, userId }) => {
         {!userId ? (
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-primary bg-blue-600"
             data-bs-toggle="tooltip"
             data-bs-placement="top"
-            title="Please Đăng nhập to like post"
+            title="Đăng nhập để thích bài viết"
           >
             <LikeStatus />
           </button>
         ) : (
-          <button type="button" className="btn btn-primary">
+          <button
+            type="button"
+            className="btn btn-primary bg-blue-600"
+            title="Thích bài viết"
+          >
             <LikeStatus />
           </button>
         )}
