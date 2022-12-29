@@ -21,7 +21,7 @@ const Footer = ({ setActive, active }) => {
                 <div className="flex flex-row flex-2 gap-1 w-full p-2">
                   <img
                     className="w-40 h-28 rounded-lg"
-                    src="https://loremflickr.com/320/240/candy"
+                    src="https://loremflickr.com/320/240/cooking"
                     alt=""
                   />
                   <img
