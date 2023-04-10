@@ -43,6 +43,9 @@ const Auth = ({ setActive, setUser }) => {
         return toast.error("All fields are mandatory to fill");
       }
     } else {
+      if (password.length < 6) {
+        return toast.error("Password must be more than 6 characters");
+      }
       if (password !== confirmPassword) {
         return toast.error("Password don't match");
       }

@@ -47,6 +47,8 @@ const Auth = ({ setActive, setUser }) => {
         return toast.error("Tất cả các trường phải được điền!");
       }
     } else {
+      if (password.length < 6)
+        return toast.warning("Mật khẩu phải trên 6 kí tự");
       if (password !== confirmPassword) {
         return toast.error("Mật khẩu nhập lại không khớp!");
       }
