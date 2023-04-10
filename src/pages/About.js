@@ -114,27 +114,23 @@ const About = () => {
                     </a>
                   </li>
                   <li className="text-xl px-4 py-2 hover:text-orange-500">
-                    <a
-                      className="hover:text-orange-600"
-                      href="https://www.facebook.com/thang.tranminh.9803"
-                    >
-                      Trần Minh Thắng
+                    <a className="hover:text-orange-600" href="#">
+                      Nguyễn Thiện Toàn
                     </a>
                   </li>
                   <li className="text-xl px-4 py-2 hover:text-orange-500">
-                    <a
-                      className="hover:text-orange-600"
-                      href="https://www.facebook.com/xu.xi.1614460"
-                    >
-                      Hoàng Quý Hào
+                    <a className="hover:text-orange-600" href="#">
+                      Phạm Văn Tuấn
                     </a>
                   </li>
                   <li className="text-xl px-4 py-2 hover:text-orange-500">
-                    <a
-                      className="hover:text-orange-600"
-                      href="https://www.facebook.com/profile.php?id=100007899344906"
-                    >
-                      Đỗ Văn Hảo
+                    <a className="hover:text-orange-600" href="#">
+                      Trần Thị Thuận
+                    </a>
+                  </li>
+                  <li className="text-xl px-4 py-2 hover:text-orange-500">
+                    <a className="hover:text-orange-600" href="#">
+                      Dương Thị Trà My
                     </a>
                   </li>
                 </ul>
