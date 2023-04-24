@@ -1,31 +1,32 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import BlogSection from "../components/BlogSection";
-import Spinner from "../components/Spinner";
-import { db } from "../firebase";
+import BlogSection from "../../components/BlogSection";
+import Spinner from "../../components/Spinner";
+import { db } from "../../firebase";
 
-const CategoryBlog = ({ setActive }) => {
-  const [categoryBlogs, setCategoryBlogs] = useState([]);
+const TagBlog = ({ setActive }) => {
+  const [tagBlogs, setTagBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { category } = useParams();
+  const { tag } = useParams();
 
-  const getCategoryBlogs = async () => {
+  const getTagBlogs = async () => {
     setLoading(true);
     const blogRef = collection(db, "blogs");
-    const categoryBlogQuery = query(blogRef, where("category", "==", category));
-    const docSnapshot = await getDocs(categoryBlogQuery);
-    let categoryBlogs = [];
+    const tagBlogQuery = query(blogRef, where("tags", "array-contains", tag));
+    const docSnapshot = await getDocs(tagBlogQuery);
+    let tagBlogs = [];
     docSnapshot.forEach((doc) => {
-      categoryBlogs.push({ id: doc.id, ...doc.data() });
+      tagBlogs.push({ id: doc.id, ...doc.data() });
     });
-    setCategoryBlogs(categoryBlogs);
+    setTagBlogs(tagBlogs);
     setLoading(false);
   };
 
   useEffect(() => {
-    getCategoryBlogs();
+    getTagBlogs();
     setActive(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {
@@ -37,9 +38,9 @@ const CategoryBlog = ({ setActive }) => {
       <div className="container">
         <div className="row">
           <div className="blog-heading text-center py-2 mb-4">
-            Danh Mục: <strong>{category.toLocaleUpperCase()}</strong>
+            Tag: <strong>{tag.toLocaleUpperCase()}</strong>
           </div>
-          {categoryBlogs?.map((item) => (
+          {tagBlogs?.map((item) => (
             <div className="col-md-6">
               <BlogSection key={item.id} {...item} />
             </div>
@@ -50,4 +51,4 @@ const CategoryBlog = ({ setActive }) => {
   );
 };
 
-export default CategoryBlog;
+export default TagBlog;

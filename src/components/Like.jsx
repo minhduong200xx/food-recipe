@@ -6,7 +6,7 @@ const Like = ({ handleLike, likes, userId }) => {
     let tooltipTriggerList = [].slice.call(
       document.querySelectorAll('[data-bs-toggle="tooltip"]')
     );
-    let tootipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
       return new Tooltip(tooltipTriggerEl);
     });
   }, []);

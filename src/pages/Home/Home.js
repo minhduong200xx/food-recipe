@@ -11,17 +11,17 @@ import {
   startAfter,
 } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
-import BlogSection from "../components/BlogSection";
-import Spinner from "../components/Spinner";
-import { db } from "../firebase";
+import BlogSection from "../../components/BlogSection";
+import Spinner from "../../components/Spinner";
+import { db } from "../../firebase";
 import { toast } from "react-toastify";
-import Tags from "../components/Tags";
-import FeatureBlogs from "../components/FeatureBlogs";
-import Trending from "../components/Trending";
-import Search from "../components/Search";
+import Tags from "../../components/Tags";
+import FeatureBlogs from "../../components/FeatureBlogs";
+import Trending from "../../components/Trending";
+import Search from "../../components/Search";
 import { isEmpty, isNull } from "lodash";
 import { useLocation } from "react-router-dom";
-import Category from "../components/Category";
+import Category from "../../components/Category";
 import { Link } from "react-router-dom";
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -135,7 +135,6 @@ const Home = ({ setActive, user, active }) => {
     );
     const titleSnapshot = await getDocs(searchTitleQuery);
     const descSnapshot = await getDocs(searchdescQuery);
-
     let searchTitleBlogs = [];
     let searchdescBlogs = [];
     titleSnapshot.forEach((doc) => {

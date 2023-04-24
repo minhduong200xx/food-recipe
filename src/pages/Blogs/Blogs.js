@@ -12,10 +12,10 @@ import {
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import BlogSection from "../components/BlogSection";
-import Pagination from "../components/Pagination";
-import Spinner from "../components/Spinner";
-import { db } from "../firebase";
+import BlogSection from "../../components/BlogSection";
+import Pagination from "../../components/Pagination";
+import Spinner from "../../components/Spinner";
+import { db } from "../../firebase";
 
 const Blogs = ({ setActive }) => {
   const [loading, setLoading] = useState(false);

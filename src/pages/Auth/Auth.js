@@ -2,10 +2,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  currenUser,
 } from "firebase/auth";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { auth } from "../../firebase.config.js";
+import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
 const initialState = {
@@ -32,22 +33,24 @@ const Auth = ({ setActive, setUser }) => {
     e.preventDefault();
     if (!signUp) {
       if (email && password) {
-        const { user } = await signInWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
-        setUser(user);
-        setActive("home");
+        await signInWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            setUser(user);
+            toast.success("Đăng nhập thành công");
+            navigate("/");
+          })
+          .catch((error) => {
+            toast.error("Tài khoản hoặc mật khẩu không đúng!");
+          });
       } else {
-        return toast.error("All fields are mandatory to fill");
+        return toast.error("Tất cả các trường phải được điền!");
       }
     } else {
-      if (password.length < 6) {
-        return toast.error("Password must be more than 6 characters");
-      }
+      if (password.length < 6)
+        return toast.warning("Mật khẩu phải trên 6 kí tự");
       if (password !== confirmPassword) {
-        return toast.error("Password don't match");
+        return toast.error("Mật khẩu nhập lại không khớp!");
       }
       if (firstName && lastName && email && password) {
         const { user } = await createUserWithEmailAndPassword(
@@ -56,19 +59,20 @@ const Auth = ({ setActive, setUser }) => {
           password
         );
         await updateProfile(user, { displayName: `${firstName} ${lastName}` });
+        toast.success("Đăng ký thành công!");
         setActive("home");
+        navigate("/");
       } else {
-        return toast.error("All fields are mandatory to fill");
+        return toast.error("Tất cả các trường phải được điền!");
       }
     }
-    navigate("/");
   };
 
   return (
-    <div className="w-screen container-fluid mb-4 ">
-      <div className="container w-1/2">
+    <div className="container-fluid py-4 bg-gray-100">
+      <div className="container w-2/3 bg-orange-200 rounded-2xl px-2">
         <div className="col-12 text-center">
-          <div className="text-center text-gray-500 py-2">
+          <div className="text-center text-black font-bold text-2xl pt-4 uppercase">
             {!signUp ? "Đăng Nhập" : "Đăng Ký"}
           </div>
         </div>
@@ -81,7 +85,7 @@ const Auth = ({ setActive, setUser }) => {
                     <input
                       type="text"
                       className="form-control input-text-box"
-                      placeholder="First Name"
+                      placeholder="Họ"
                       name="firstName"
                       value={firstName}
                       onChange={handleChange}
@@ -91,7 +95,7 @@ const Auth = ({ setActive, setUser }) => {
                     <input
                       type="text"
                       className="form-control input-text-box"
-                      placeholder="Last Name"
+                      placeholder="Tên"
                       name="lastName"
                       value={lastName}
                       onChange={handleChange}
@@ -113,7 +117,7 @@ const Auth = ({ setActive, setUser }) => {
                 <input
                   type="password"
                   className="form-control input-text-box"
-                  placeholder="Password"
+                  placeholder="Mật khẩu"
                   name="password"
                   value={password}
                   onChange={handleChange}
@@ -124,7 +128,7 @@ const Auth = ({ setActive, setUser }) => {
                   <input
                     type="password"
                     className="form-control input-text-box"
-                    placeholder="Confirm Password"
+                    placeholder="Xác nhận mật khẩu"
                     name="confirmPassword"
                     value={confirmPassword}
                     onChange={handleChange}
@@ -132,51 +136,54 @@ const Auth = ({ setActive, setUser }) => {
                 </div>
               )}
 
-              <div className="col-12 py-3 text-center">
+              <div className="col-12 pb-3 text-center">
+                <div>
+                  {!signUp ? (
+                    <>
+                      <div className="text-center justify-content-center pb-2">
+                        <p className="small fw-bold py-2 mb-0">
+                          Chưa có tài khoản?
+                          <span
+                            className="text-red-500"
+                            style={{
+                              textDecoration: "none",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => setSignUp(true)}
+                          >
+                            Đăng ký
+                          </span>
+                        </p>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-center justify-content-center pb-2">
+                        <p className="small fw-bold py-2 mb-0">
+                          Đã có tài khoản ?&nbsp;
+                          <span
+                            style={{
+                              textDecoration: "none",
+                              cursor: "pointer",
+                              color: "#298af2",
+                            }}
+                            onClick={() => setSignUp(false)}
+                          >
+                            Đăng Nhập
+                          </span>
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
                 <button
                   className={`btn ${!signUp ? "btn-sign-in" : "btn-sign-up"}`}
                   type="submit"
                 >
-                  {!signUp ? "Đăng nhập" : "Sign-up"}
+                  {!signUp ? "Đăng nhập" : "Đăng ký"}
                 </button>
               </div>
             </form>
-            <div>
-              {!signUp ? (
-                <>
-                  <div className="text-center justify-content-center mt-2 pt-2">
-                    <p className="small fw-bold mt-2 pt-1 mb-0">
-                      Chưa có tài khoản?
-                      <span
-                        className="link-danger"
-                        style={{ textDecoration: "none", cursor: "pointer" }}
-                        onClick={() => setSignUp(true)}
-                      >
-                        Sign Up
-                      </span>
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="text-center justify-content-center mt-2 pt-2">
-                    <p className="small fw-bold mt-2 pt-1 mb-0">
-                      Already have an account ?&nbsp;
-                      <span
-                        style={{
-                          textDecoration: "none",
-                          cursor: "pointer",
-                          color: "#298af2",
-                        }}
-                        onClick={() => setSignUp(false)}
-                      >
-                        Sign In
-                      </span>
-                    </p>
-                  </div>
-                </>
-              )}
-            </div>
           </div>
         </div>
       </div>

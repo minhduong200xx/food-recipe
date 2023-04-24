@@ -15,14 +15,13 @@ import { isEmpty } from "lodash";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import CommentBox from "../components/CommentBox";
-import Like from "../components/Like";
-import FeatureBlogs from "../components/FeatureBlogs";
-import RelatedBlog from "../components/RelatedBlog";
-import Tags from "../components/Tags";
-import UserComments from "../components/UserComments";
-import { db } from "../firebase";
-import Spinner from "../components/Spinner";
+import CommentBox from "../../components/CommentBox";
+import Like from "../../components/Like";
+import FeatureBlogs from "../../components/FeatureBlogs";
+import RelatedBlog from "../../components/RelatedBlog";
+import Tags from "../../components/Tags";
+import UserComments from "../../components/UserComments";
+import { db } from "../../firebase";
 
 const Detail = ({ setActive, user }) => {
   const userId = user?.uid;
