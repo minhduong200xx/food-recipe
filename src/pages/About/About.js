@@ -98,45 +98,6 @@ const About = () => {
               />
             </div>
           </div>
-          <div>
-            <div className="grid lg:gap-8 lg:grid-cols-2 lg:items-center">
-              <div className="lg:col-start-2 bg-slate-300 rounded-xl p-4 shadow-lg">
-                <h3 className="text-2xl font-bold tracking-tight sm:text-3xl dark:text-gray-50">
-                  Thành viên nhóm
-                </h3>
-                <ul className="list-decimal mt-4 ml-12">
-                  <li className="text-xl px-4 py-2 hover:text-orange-500">
-                    <a
-                      className="hover:text-orange-600"
-                      href="https://www.facebook.com/min.d2101"
-                    >
-                      Nguyễn Minh Dương
-                    </a>
-                  </li>
-                  <li className="text-xl px-4 py-2 hover:text-orange-500">
-                    <a className="hover:text-orange-600" href="#">
-                      Nguyễn Thiện Toàn
-                    </a>
-                  </li>
-                  <li className="text-xl px-4 py-2 hover:text-orange-500">
-                    <a className="hover:text-orange-600" href="#">
-                      Phạm Văn Tuấn
-                    </a>
-                  </li>
-                  <li className="text-xl px-4 py-2 hover:text-orange-500">
-                    <a className="hover:text-orange-600" href="#">
-                      Trần Thị Thuận
-                    </a>
-                  </li>
-                  <li className="text-xl px-4 py-2 hover:text-orange-500">
-                    <a className="hover:text-orange-600" href="#">
-                      Dương Thị Trà My
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
